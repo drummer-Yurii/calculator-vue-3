@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 
 const display = ref('');
 const buttons = [
@@ -33,6 +33,14 @@ const buttons = [
 <template>
   <div class="calculator">
     <input type="text" v-model="display" class="display" disabled />
-    <div class="button"></div>
+    <div class="buttons">
+      <button
+        v-for="btn in buttons"
+        :key="btn.value"
+        :class="`button button_${btn.type || 'default'}`"
+      >
+        {{ btn.value }}
+      </button>
+    </div>
   </div>
 </template>
