@@ -28,6 +28,19 @@ const buttons = [
   { value: '0' },
   { value: '=', type: 'equals' },
 ];
+
+const update = (value) => {
+  if (value === 'AC') {
+    return (display.value = '');
+  }
+  if (value === 'DEL') {
+    return (display.value = display.value.slice(0, -1));
+  }
+  if (value === '=') {
+    return (display.value = eval(display.value));
+  }
+  display.value += value;
+};
 </script>
 
 <template>
@@ -37,6 +50,7 @@ const buttons = [
       <button
         v-for="btn in buttons"
         :key="btn.value"
+        @click="update(btn.value)"
         :class="`button button_${btn.type || 'default'}`"
       >
         {{ btn.value }}
